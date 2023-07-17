@@ -1,8 +1,11 @@
 package br.com.marcioviana.DsList.repositories;
 
 import br.com.marcioviana.DsList.entities.Game;
+import br.com.marcioviana.DsList.projections.GameMinProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 public interface Gamerepository  extends JpaRepository<Game, Long> {
     @Query(nativeQuery = true, value = """
@@ -13,5 +16,5 @@ public interface Gamerepository  extends JpaRepository<Game, Long> {
 		WHERE tb_belonging.list_id = :listId
 		ORDER BY tb_belonging.position
 			""")
-    List<GameMinProjection> searchByList(Long listId);
+	List<GameMinProjection> searchByList(Long listId);
 }
